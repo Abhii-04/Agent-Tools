@@ -57,7 +57,7 @@ def listen_and_transcribe():
     with sd.InputStream(
         samplerate=SAMPLE_RATE,
         channels = 1,
-        dtpye = "float32",
+        dtype = "float32",
         blocksize = CHUNK_SIZE,
         callback = callback
     ):

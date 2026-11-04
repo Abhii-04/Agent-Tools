@@ -31,7 +31,7 @@ class Agent:
         self.memory=None
         self.graph=None
     
-    def setup(self):
+    async def setup(self):
         self.tools=[]
         self.llm=llm()
         self.agent = self.llm.bind_tools(self.tools)
@@ -65,7 +65,7 @@ class Agent:
             return "tools"   
         return END  
                                                                           
-    def build_graph(self):
+    async def build_graph(self):
         graph_builder = StateGraph(State)
 
         #Nodes
@@ -84,7 +84,7 @@ class Agent:
             }
         )
         graph_builder.add_edge("tools","compress")
-        graph_builder.add_node("compress","agents")
+        graph_builder.add_edge("compress","agent")
       
 
         self.graph = graph_builder.compile(checkpointer=self.memory)

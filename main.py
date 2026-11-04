@@ -1,3 +1,4 @@
+
 from langgraph.types import Command
 from agent.agent import Agent
 import asyncio
@@ -25,8 +26,8 @@ async def main():
             next_input=( result if isinstance(result,Command) else None)
             if next_input is None and result is not None:
                 print("Agent:",result)
-    finally:
-        await agent.close()
+    except Exception as e:
+        raise RuntimeError(f"agent failed due to following readon: {e}") from e
 
 if __name__ == "__main__":
     asyncio.run(main())
