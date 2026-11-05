@@ -10,6 +10,7 @@ from langgraph.graph import StateGraph,START,END
 from langgraph.prebuilt import ToolNode
 
 from agent.config.state import State
+from agent.tools.sandbox import sandbox
 
 load_dotenv()
 
@@ -32,7 +33,7 @@ class Agent:
         self.graph=None
     
     async def setup(self):
-        self.tools=[]
+        self.tools=[sandbox]
         self.llm=llm()
         self.agent = self.llm.bind_tools(self.tools)
         self.graph = None

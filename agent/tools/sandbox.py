@@ -1,4 +1,5 @@
 """Sandbox for agent which it can use to write commands and work with bash instead of working on local machine. """
+from typing import Any
 from daytona import Daytona, DaytonaConfig
 from langchain_daytona import DaytonaSandbox
 
@@ -10,7 +11,8 @@ load_dotenv()
 config = DaytonaConfig(api_key = os.getenv("DAYTONA_API_KEY"))
 daytona = Daytona(config)
 
-def sandbox(query):
+def sandbox(query:Any):
+    """Use sandbox to run code or execute a shell command in a temporary sandbox. """
     sb=None
     try:
         sb= Daytona().create()
